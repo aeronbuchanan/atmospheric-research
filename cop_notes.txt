@@ -1,0 +1,48 @@
+OK, so there are a few things needed here:
+
+1) perhaps a clearer presentation of the pipeline to emphasise that the steps (and choice of algorithm for each step) is independent - clustering; calculation of index; interpretation, etc
+
+2) comparison of pixel-based clustering (primitive, chaotic) with non-max suppression (the more 'analogue', stable)
+
+Qualitative: it is well known that quantization has problems with stability of analysis - it is impossible to find a universal threshold and there is no noise tolerance. ROC curve performance is bad. The ideal solution is would be fully adaptive and noise tolerant, which could perhaps be implemented using hidden markov models or neural networks. A significant improvement over single threshold naivety towards the "fuzzy" ideal is to use two thresholds: the second threshold being employed in an adaptive way, informed by the first.
+ 
+Quantitative: I reckon our method is more robust to noise and more stable over time. Properly demonstrating robustness requires getting some experts to create ground truth and comparing the output. That might already exist in the general case, but not possible for this deadline on the specific domain of convective clusters(!) However, it might be quite quick to show temporal stability. Look at the number of clusters over a time series and point out lack of "flickering" which I would expect to see using the quantization method. Running pixel quantization on the same data should demonstrate this. I think pixel quantization can be emulated using the code I originally wrote simply by taking the output of non-max suppression but with both the thresholds set equal, then using a neighbourhood template that only connects 4-neighbours. I generalized the neighbourhood connectivity, so hopefully that should be easy to work out...
+
+3) comparison of SCAI with COP
+
+> discussion on how COP compares with SCAI.  
+
+In short, COP is a more relavent index than SCAI for investigating convection cluster interaction potential. As formulated, it most closely relates to the reciprocal of SCAI
+
+SCAI = \frac{N}{N_max} \frac{D_0}{L} x 1000
+     = \tilde{N}\tilde{D_0} x 1000
+
+N = number of convective regions
+N_max is an arbitrary number representing the 'maximum' number of regions
+D_0 = \root{\prod{d_i}^N_1}^N = geometric mean distance between the regions
+L = linear size of domain under consideration
+
+alternative considered but not used:
+
+D_1 = \frac{\sum{d_i}^N_1}{N(N-1)/2} = arithmetic mean distance between regions
+
+"This formula can be interpreted as the ratio of the degree of convective ‘‘disaggregation’’ to a potential maximal disaggregation, expressed in per thousand."
+
+NB: calculation of the geometric mean involves the product() function which can easily overflow the precision of the arithmatic for large data sets.
+
+> What happens if N=1 (and COP would be undefined)? 
+
+If N=1 then COP would indeed be undefined. This mathematical behaviour is consistent with the notion that this metric measures the potential interaction for convective regions.
+
+
+
+4) analysis (which I've got a much weaker handle on)
+
+
+
+
+
+
+
+
+
