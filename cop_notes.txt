@@ -5,6 +5,8 @@ Breaking down the discussion:
 
 1) perhaps a clearer presentation of the pipeline to emphasise that the steps (and choice of algorithm for each step) is independent - clustering; calculation of index; interpretation, etc
 
+See "pipeline" figure.
+
 2) comparison of pixel-based clustering (primitive, chaotic) with non-max suppression (the more 'analogue', stable)
 
 Qualitative: it is well known that quantization has problems with stability of analysis - it is impossible to find a universal threshold and there is no noise tolerance. ROC curve performance is bad. The ideal solution is would be fully adaptive and noise tolerant, which could perhaps be implemented using hidden markov models or neural networks. A significant improvement over single threshold naivety towards the "fuzzy" ideal is to use two thresholds: the second threshold being employed in an adaptive way, informed by the first.
@@ -15,7 +17,13 @@ Quantitative: I reckon our method is more robust to noise and more stable over t
 
 > discussion on how COP compares with SCAI.  
 
-In short, COP is a more relavent index than SCAI for investigating convection cluster interaction potential. As formulated, it most closely relates to the reciprocal of SCAI
+In short, COP is a more relavent index than SCAI for investigating convection cluster interaction potential. As formulated, it most closely relates to the reciprocal of SCAI.
+
+SCAI does not take into account any characteristics relating to the size and therefore the 'practical proximity' or 'contour proximity' is ignored. See "COPvsSCAI" figure. COP does include terms related to proximity (namely size) and so is better for characterizing aggregation or potential for interaction. It is an approximation and could be greatly improved with more advance methods and metrics, but is nevertheless an improvement over SCAI.
+
+SCAI uses the geometric mean of the separation distances, which can de-emphasise small distances compared to the arithmetic mean that we have decided to use for COP. See graphs of arithmetic versus geometric measures.
+
+
 
 SCAI = \frac{N}{N_max} \frac{D_0}{L} x 1000
      = \tilde{N}\tilde{D_0} x 1000
