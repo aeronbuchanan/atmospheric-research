@@ -1,4 +1,7 @@
-OK, so there are a few things needed here:
+The "Quantifiying" paper does two things: firstly introduces new analysis tools and secondly uses them to present new insights. It could be worth splitting the paper and explicitly presenting these two things separately as a methods paper and a research paper. Beyond this, I think it could be worth developing some better tools optimized for the analysis, i.e. get some ground truth labelled data on the phenomina of interest and then train some arigorithms to better measure the propensity for such events occuring given a particular situation, including explicitly looking at the ROC (false positive / true positive ratio) performance, etc. Ideas include creating contours for various tresholds and using perpendicular rays to get proximity maps between adjacent convection regions and feeding these into neural networks or similar.
+
+
+Breaking down the discussion:
 
 1) perhaps a clearer presentation of the pipeline to emphasise that the steps (and choice of algorithm for each step) is independent - clustering; calculation of index; interpretation, etc
 
